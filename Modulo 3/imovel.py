@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 class Imovel(ABC): #classe abstrata
-    def __init__(self, nome, uf, valor, endereco = '', area = ''):
+    def __init__(self, nome, uf, valor, endereco = '', area = ''): #metodo __init__  é um metodo construtor
         self._nome = nome # CONVENCAO // um underline = metodo protegido // dois underline = metodo privado
         self._uf = uf
         self._valor = valor
@@ -34,7 +34,6 @@ class Imovel(ABC): #classe abstrata
     def aluguelSugerido(self):
         ...
 
-
 class ImovelResidencial(Imovel): #Para herança é só inserir a classe dentro do ()
     def __init__(self, nome, uf, valor, endereco = '', area = ''): #sobrescreveu a classe pai
         super().__init__(nome, uf, valor, endereco = '', area = '') #passar os parametros da superclasse pai
@@ -48,7 +47,16 @@ class ImovelComercial(Imovel):
     
     def aluguelSugerido(self):
         return self._valor * 0.02
+    
+    def calcularImposto(self): #POLIMORFISMO: sobrescrever um metodo da classe PAI
+        match self._uf:
+            case 'DF' : taxa = 0.03
+            case 'SP' : taxa = 0.04
+            case 'RJ' : taxa = 0.025
+            case other : taxa = 0.02
 
+        return self._valor * taxa
+    
 class ImovelRural:
     def __init__(self, hectares = '', curral = '', produtiva = True):
         self._hectares = hectares
@@ -66,14 +74,15 @@ class Fazenda(Imovel, ImovelRural):
     def aluguelSugerido(self):
         return self._valor * 0.03
 
-
 fazenda = Fazenda('Fazenda Modelo', 'GO', 1500000)
 clinica = ImovelComercial('Clínica X', 'DF', 800000)
-casa = ImovelResidencial('Casa Guará', 'DF', 350000)
+casa = ImovelResidencial('Casa Guará', 'DF', 300000)
 
 casa.nome = 'Casa muito bonita'
 casa.uf = 'SP'
-casa.detalhar()
+# casa.detalhar()
+print(casa.calcularImposto())
+print(clinica.calcularImposto())
 
 
 # imovel = Imovel('Residencial Aeronautica', 'DF', 400000)
