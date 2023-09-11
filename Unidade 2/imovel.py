@@ -1,3 +1,13 @@
+class Categoria:
+    def __init__(self, tipo = ''):
+        self.tipo = tipo
+    
+    def taxaAgua(self, consumo):
+        match self.tipo:
+            case 'Clínica' : return consumo * 1
+            case 'Restaurante' : return consumo * 2
+            case 'Hotel' : return consumo * 2.5
+
 class Imovel:
 
     imposto = 0.2     #atributo de classe
@@ -6,6 +16,7 @@ class Imovel:
         self.nome = nome
         self.quartos = quartos
         self.suites = suites
+        self.categoria = Categoria() #Metodo de Composicao != de Heranca
 
     def detalhar(self):
         print(self.__dict__)
@@ -50,6 +61,11 @@ class Imovel:
 
 apartamento = Imovel('Ap Guará', 3, 1)
 mansao = Imovel('Mansao', 4, 5)
+
+categoria = Categoria('Hotel')
+hotel = Imovel('Hotel 1 lugar', 0, 150)
+hotel.categoria = categoria
+print(hotel.categoria.taxaAgua(300))
 
 soma = apartamento + mansao
 # print(soma)
