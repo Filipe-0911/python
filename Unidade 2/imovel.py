@@ -1,8 +1,13 @@
+import data
+
 class Categoria:
     def __init__(self, tipo = ''):
         self.tipo = tipo
     
     def taxaAgua(self, consumo):
+
+        print("Data da leitura: ", data.formatarData())
+
         match self.tipo:
             case 'Clínica' : return consumo * 1
             case 'Restaurante' : return consumo * 2
