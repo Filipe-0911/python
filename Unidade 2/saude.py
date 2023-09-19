@@ -23,16 +23,10 @@ df_pacientes['IMC'] = df_pacientes.apply(lambda i: i.peso / i.altura ** 2, axis 
 media = np.mean(df_pacientes['IMC']) #media do imc do df_pacientes
 sobrepeso = df_pacientes[df_pacientes['IMC'] > 25] #verificando quantos estao com imc acima de 25
 percentual = len(sobrepeso) / len(df_pacientes) * 100 #percentual
+ordenada = df_pacientes.sort_values(by='IMC') #ordenando do menor pro maior com pandas
 
-# print(df_pacientes)
-print(l_pacientes)
-
-for paciente in l_pacientes:
-    print(paciente['nome'], paciente['peso'], paciente['altura'])
-
-# plt.plot(meses, AIM1, label = 'AIM1', color = 'blue', linestyle='--', marker='.') #plot sao riscos, bar eh para graficos em barras
-# plt.plot(meses, AIM2, label = 'AIM2', color = 'green', linestyle='--', marker='.')
-# plt.title('SDIAS tratados')
-# plt.xlabel('Meses')
-# plt.ylabel('Quantidade')
-# plt.legend()
+plt.bar(ordenada['nome'], ordenada['IMC'] , label='Paciente', color='green')
+plt.title('Peso de cada paciente')
+plt.xlabel('Nome')
+plt.ylabel('Peso')
+plt.show()
