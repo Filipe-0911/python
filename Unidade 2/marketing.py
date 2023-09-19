@@ -31,7 +31,7 @@ plt.ylabel("Custo em Reais")
 plt.show()
     
 
-    # Campanha('Facebook Ads', 1000, 15000, 150),
-    # Campanha('Google Ads', 1200, 10000, 200),
-    # Campanha('Email Ads', 5000, 5000, 50),
-    # Campanha('Instagram Ads', 800, 12000, 80),
+# Campanha('Facebook Ads', 1000, 15000, 150),
+# Campanha('Google Ads', 1200, 10000, 200),
+# Campanha('Email Ads', 5000, 5000, 50),
+# Campanha('Instagram Ads', 800, 12000, 80),
